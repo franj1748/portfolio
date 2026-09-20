@@ -6,6 +6,7 @@
 <script src="./support.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.js"></script>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="1ccaa3f4-2a17-4f8a-907d-0f53b36b637f"></script>
 </head>
 <body>
 <x-dc>
@@ -255,8 +256,22 @@
       </div>
     </section>
 
+    <section id="como-trabajo" style="padding: clamp(48px, 7vw, 96px) 0; border-top: 1px solid var(--line);">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 22px;">// 04. {{ t.secProcess }}</div>
+      <h2 style="margin: 0 0 40px; max-width: 24ch; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; text-wrap: pretty;">{{ t.processTitle }}</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 1px; border: 1px solid var(--line); border-radius: 16px; background: var(--line); overflow: hidden;">
+        <sc-for list="{{ process }}" as="p" hint-placeholder-count="4">
+          <div data-reveal="" style="padding: 26px 22px 24px; background: var(--panel-solid); transition: background .2s ease;" style-hover="background: var(--panel-hover);">
+            <span style="font-size: 30px; font-weight: 800; letter-spacing: -0.03em; background: linear-gradient(120deg, var(--grad-a), var(--grad-b)); -webkit-background-clip: text; background-clip: text; color: transparent;">{{ p.num }}</span>
+            <div style="margin-top: 10px; font-size: 14.5px; font-weight: 600; color: var(--text);">{{ p.title }}</div>
+            <div style="margin-top: 6px; font-size: 13px; color: var(--muted); line-height: 1.6;">{{ p.text }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
     <section id="proyectos" style="padding: clamp(48px, 7vw, 96px) 0; border-top: 1px solid var(--line);">
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 22px;">// 04. {{ t.secProjects }}</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 22px;">// 05. {{ t.secProjects }}</div>
       <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; justify-content: space-between; margin-bottom: 26px;">
         <h2 style="margin: 0; max-width: 26ch; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; text-wrap: pretty;">{{ t.projectsTitle }}</h2>
         <p style="margin: 0; max-width: 34ch; font-size: 13.5px; line-height: 1.6; color: var(--dim);">{{ t.projectsSub }}</p>
@@ -354,7 +369,7 @@
     </section>
 
     <section id="sitios" style="padding: clamp(48px, 7vw, 96px) 0; border-top: 1px solid var(--line);">
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 22px;">// 05. {{ t.secSites }}</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 22px;">// 06. {{ t.secSites }}</div>
       <h2 style="margin: 0 0 40px; max-width: 26ch; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; text-wrap: pretty;">{{ t.sitesTitle }}</h2>
       <div style="display: flex; flex-direction: column; gap: 1px; border: 1px solid var(--line); border-radius: 16px; background: var(--line); overflow: hidden;">
         <sc-for list="{{ sites }}" as="s" hint-placeholder-count="6">
@@ -382,7 +397,7 @@
     </section>
 
     <section id="stack" style="padding: clamp(48px, 7vw, 96px) 0; border-top: 1px solid var(--line);">
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 22px;">// 06. {{ t.secStack }}</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 22px;">// 07. {{ t.secStack }}</div>
       <h2 style="margin: 0 0 40px; max-width: 26ch; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; text-wrap: pretty;">{{ t.stackTitle }}</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 20px;">
         <sc-for list="{{ stack }}" as="g" hint-placeholder-count="4">
@@ -428,7 +443,7 @@
     </section>
 
     <section id="testimonios" style="padding: clamp(48px, 7vw, 96px) 0; border-top: 1px solid var(--line);">
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 22px;">// 07. {{ t.secTestimonials }}</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 22px;">// 08. {{ t.secTestimonials }}</div>
       <h2 style="margin: 0 0 40px; max-width: 26ch; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; text-wrap: pretty;">{{ t.testimonialsTitle }}</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 20px;">
         <sc-for list="{{ testimonials }}" as="q" hint-placeholder-count="4">
@@ -450,7 +465,7 @@
           <div>
             <div style="display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px;">
               <span style="width: 5px; height: 5px; border-radius: 9999px; background: var(--accent);"></span>
-              <span>// 08. {{ t.secContact }}</span>
+              <span>// 09. {{ t.secContact }}</span>
             </div>
             <h2 style="margin: 0 0 18px; font-size: clamp(26px, 3.2vw, 40px); line-height: 1.12; font-weight: 700; letter-spacing: -0.02em; text-wrap: pretty;">{{ t.contactTitle }}</h2>
             <p style="margin: 0 0 30px; max-width: 46ch; font-size: 15px; line-height: 1.7; color: var(--muted); text-wrap: pretty;">{{ t.contactSub }}</p>
@@ -571,7 +586,7 @@
 
 <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
   <div onClick="{{ closeCase }}" style="position: fixed; inset: 0; z-index: 90; display: flex; align-items: center; justify-content: center; padding: clamp(16px, 4vw, 48px); background: rgba(4,8,17,0.74); backdrop-filter: blur(6px); animation: lineIn .2s ease both;">
-    <div onClick="{{ stopClick }}" style="position: relative; width: min(760px, 100%); max-height: 86vh; overflow-y: auto; border-radius: 20px; border: 1px solid var(--line); background: var(--panel-solid); box-shadow: 0 40px 90px -30px rgba(0,0,0,0.7); animation: revealUp .3s cubic-bezier(.22,.7,.3,1) both;">
+    <div id="case-modal-panel" tabindex="-1" onClick="{{ stopClick }}" style="position: relative; width: min(760px, 100%); max-height: 86vh; overflow-y: auto; border-radius: 20px; border: 1px solid var(--line); background: var(--panel-solid); box-shadow: 0 40px 90px -30px rgba(0,0,0,0.7); animation: revealUp .3s cubic-bezier(.22,.7,.3,1) both; outline: none;">
       <div style="position: sticky; top: 0; z-index: 2; display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; padding: 26px clamp(22px, 3vw, 34px) 18px; background: var(--panel-solid); border-bottom: 1px solid var(--line);">
         <div>
           <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
@@ -626,7 +641,7 @@
 </sc-if>
 
 <sc-if value="{{ thanksOpen }}" hint-placeholder-val="{{ false }}">
-  <div style="position: fixed; inset: 0; z-index: 95; overflow-y: auto; background: var(--bg); display: flex; align-items: center; justify-content: center; padding: clamp(24px, 5vw, 64px);">
+  <div id="thanks-panel" tabindex="-1" style="position: fixed; inset: 0; z-index: 95; overflow-y: auto; background: var(--bg); display: flex; align-items: center; justify-content: center; padding: clamp(24px, 5vw, 64px); outline: none;">
     <div style="width: min(680px, 100%);">
       <div style="display: flex; align-items: center; gap: 9px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green-soft); margin-bottom: 22px;">
         <span style="width: 6px; height: 6px; border-radius: 9999px; background: var(--green); animation: pulseDot 2.4s ease-in-out infinite;"></span>
@@ -704,6 +719,8 @@ var DATA = {
       es: 'Tiendas, plugins, automatizaciones e interfaces. Cambia la tecnología según el caso, no la forma de trabajar.',
       en: 'Stores, plugins, automations and interfaces. The technology changes with the case, the way of working does not.'
     },
+    secProcess: { es: 'Cómo trabajo', en: 'How I work' },
+    processTitle: { es: 'Un proceso simple, sin sorpresas', en: 'A simple process, no surprises' },
     secProjects: { es: 'Proyectos realizados', en: 'Selected work' },
     projectsTitle: { es: 'Sistemas que resolvieron problemas concretos', en: 'Systems built for concrete problems' },
     projectsSub: {
@@ -774,11 +791,12 @@ var DATA = {
     { id: 'inicio', num: '// 01.', label: { es: 'inicio', en: 'home' }, href: '#inicio' },
     { id: 'sobre-mi', num: '// 02.', label: { es: 'sobre-mí', en: 'about' }, href: '#sobre-mi' },
     { id: 'soluciones', num: '// 03.', label: { es: 'soluciones', en: 'services' }, href: '#soluciones' },
-    { id: 'proyectos', num: '// 04.', label: { es: 'proyectos', en: 'work' }, href: '#proyectos' },
-    { id: 'sitios', num: '// 05.', label: { es: 'sitios', en: 'websites' }, href: '#sitios' },
-    { id: 'stack', num: '// 06.', label: { es: 'stack', en: 'stack' }, href: '#stack' },
-    { id: 'testimonios', num: '// 07.', label: { es: 'testimonios', en: 'clients' }, href: '#testimonios' },
-    { id: 'contacto', num: '// 08.', label: { es: 'contacto', en: 'contact' }, href: '#contacto' }
+    { id: 'como-trabajo', num: '// 04.', label: { es: 'cómo trabajo', en: 'how i work' }, href: '#como-trabajo' },
+    { id: 'proyectos', num: '// 05.', label: { es: 'proyectos', en: 'work' }, href: '#proyectos' },
+    { id: 'sitios', num: '// 06.', label: { es: 'sitios', en: 'websites' }, href: '#sitios' },
+    { id: 'stack', num: '// 07.', label: { es: 'stack', en: 'stack' }, href: '#stack' },
+    { id: 'testimonios', num: '// 08.', label: { es: 'testimonios', en: 'clients' }, href: '#testimonios' },
+    { id: 'contacto', num: '// 09.', label: { es: 'contacto', en: 'contact' }, href: '#contacto' }
   ],
 
   logos: [
@@ -1128,6 +1146,41 @@ var DATA = {
     { name: { es: 'Desarrollo Web Full Stack', en: 'Full Stack Web Development' }, org: { es: 'Formación autodidacta con cursos especializados en JavaScript, PHP, Node.js y arquitectura de software', en: 'Self-taught, complemented with specialized courses in JavaScript, PHP, Node.js and software architecture' }, id: 'talently.tech/certification' }
   ],
 
+  process: [
+    {
+      num: '01',
+      title: { es: 'Diagnóstico rápido', en: 'Quick diagnosis' },
+      text: {
+        es: 'Me cuentas el proceso que quieres resolver; respondo en menos de 24 h con una primera lectura de alcance y viabilidad.',
+        en: 'Tell me the process you want solved; I reply within 24 h with an initial read on scope and feasibility.'
+      }
+    },
+    {
+      num: '02',
+      title: { es: 'Propuesta cerrada', en: 'Fixed proposal' },
+      text: {
+        es: 'Alcance, plazo y precio acordados antes de escribir una sola línea de código, sin sorpresas a mitad de camino.',
+        en: 'Scope, timeline and price agreed before a single line of code, no surprises halfway through.'
+      }
+    },
+    {
+      num: '03',
+      title: { es: 'Desarrollo por etapas', en: 'Staged delivery' },
+      text: {
+        es: 'Entregas parciales frecuentes para que veas avances reales del proyecto, no una entrega única al final.',
+        en: 'Frequent partial deliveries so you see real progress, not a single drop at the end.'
+      }
+    },
+    {
+      num: '04',
+      title: { es: 'Entrega y seguimiento', en: 'Handover & follow-up' },
+      text: {
+        es: 'Puesta en producción, documentación y un mes de seguimiento incluido; soporte disponible después si lo necesitas.',
+        en: 'Goes live with documentation and one month of follow-up included; support available afterwards if you need it.'
+      }
+    }
+  ],
+
   why: {
     es: [
       'Cada proyecto arranca con métricas de éxito acordadas y una estimación clara del retorno esperado, para que la decisión de construirlo no dependa de una intuición.',
@@ -1176,11 +1229,17 @@ var DATA = {
   links: [
     { key: '01', label: 'email', value: 'franciscoj2079@gmail.com', href: 'mailto:franciscoj2079@gmail.com' },
     { key: '02', label: 'linkedin', value: 'francisco-javier-elis-cartaya', href: 'https://www.linkedin.com/in/francisco-javier-elis-cartaya-24506b209/' },
-    { key: '03', label: 'github', value: 'github.com/franj1748', href: 'https://github.com/franj1748' }
-  ]
+    { key: '03', label: 'github', value: 'github.com/franj1748' , href: 'https://github.com/franj1748' },
+    { key: '04', label: 'whatsapp', value: '+593 99 829 6692' }
+  ],
+
+  whatsappText: {
+    es: 'Hola Francisco, vi tu portafolio y quiero hablar sobre un proyecto.',
+    en: 'Hi Francisco, I saw your portfolio and would like to talk about a project.'
+  }
 };
 
-var SECTIONS = ['inicio', 'sobre-mi', 'soluciones', 'proyectos', 'sitios', 'stack', 'testimonios', 'contacto'];
+var SECTIONS = ['inicio', 'sobre-mi', 'soluciones', 'como-trabajo', 'proyectos', 'sitios', 'stack', 'testimonios', 'contacto'];
 
 if (window.pdfMake) {
   pdfMake.fonts = {
@@ -1328,7 +1387,15 @@ class Component extends DCLogic {
     this.startScrollSpy();
     this.startCounters();
     this._onKey = (e) => {
-      if (e.key === 'Escape' && this.state.openCase) this.setState({ openCase: null });
+      if (e.key === 'Escape') {
+        if (this.state.openCase) this.closeCase();
+        else if (this.state.sent) this.closeThanks();
+        return;
+      }
+      if (e.key === 'Tab') {
+        var panelId = this.state.openCase ? 'case-modal-panel' : (this.state.sent ? 'thanks-panel' : null);
+        if (panelId) this.trapTab(panelId, e);
+      }
     };
     window.addEventListener('keydown', this._onKey);
     this._onHash = () => {
@@ -1395,12 +1462,41 @@ class Component extends DCLogic {
   setFilter = (key) => { this.setState({ filter: key }); };
 
   toggleCase = (num) => {
+    var opening = this.state.openCase !== num;
+    if (opening) this._caseTrigger = document.activeElement;
     this.setState(function (s) { return { openCase: s.openCase === num ? null : num }; });
+    if (opening) {
+      setTimeout(function () {
+        var panel = document.getElementById('case-modal-panel');
+        if (panel) panel.focus();
+      }, 0);
+    }
   };
 
-  closeCase = () => { this.setState({ openCase: null }); };
+  closeCase = () => {
+    this.setState({ openCase: null });
+    var trigger = this._caseTrigger;
+    this._caseTrigger = null;
+    if (trigger && document.body.contains(trigger)) trigger.focus();
+  };
 
   stopClick = (e) => { e.stopPropagation(); };
+
+  trapTab(panelId, e) {
+    var panel = document.getElementById(panelId);
+    if (!panel) return;
+    var focusable = panel.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])');
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }
 
   onPrint = () => { buildPdf(this.renderVals()); };
 
@@ -1531,6 +1627,7 @@ class Component extends DCLogic {
   onSubmit = (e) => {
     e.preventDefault();
     if (this.state.sending) return;
+    this._thanksTrigger = document.activeElement;
     var self = this;
     var form = e.target;
     var f = new FormData(form);
@@ -1569,6 +1666,10 @@ class Component extends DCLogic {
           try { form.reset(); } catch (err) {}
           self.setState({ sending: false, status: 'ok', sent: true, summary: summary });
           window.scrollTo({ top: 0, behavior: 'auto' });
+          setTimeout(function () {
+            var panel = document.getElementById('thanks-panel');
+            if (panel) panel.focus();
+          }, 0);
         } else {
           self.setState({ sending: false, status: 'error', mailto: mailto });
         }
@@ -1580,12 +1681,21 @@ class Component extends DCLogic {
     this.setState({ sent: false, status: null, summary: null });
     var el = document.getElementById('inicio');
     if (el) window.scrollTo({ top: el.offsetTop, behavior: 'auto' });
+    var trigger = this._thanksTrigger;
+    this._thanksTrigger = null;
+    if (trigger && document.body.contains(trigger)) trigger.focus();
   };
 
   renderVals() {
     var self = this;
     var lang = this.state.lang === 'en' ? 'en' : 'es';
     var d = pick(DATA, lang);
+    d.links = d.links.map(function (l) {
+      if (l.label === 'whatsapp' && !l.href) {
+        return Object.assign({}, l, { href: 'https://wa.me/593998296692?text=' + encodeURIComponent(d.whatsappText) });
+      }
+      return l;
+    });
     var filter = this.state.filter;
     var matches = function (p) { return filter === 'all' || (p.tags || []).indexOf(filter) !== -1; };
 
