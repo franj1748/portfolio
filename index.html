@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.10/vfs_fonts.js"></script>
 </head>
 <body>
 <x-dc>
@@ -63,12 +65,6 @@
   @keyframes marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
   @keyframes lineIn { from { opacity: 0; transform: translate3d(-6px,0,0); } to { opacity: 1; transform: translate3d(0,0,0); } }
   @media (max-width: 1480px) { #side-rail { display: none !important; } }
-  @media print {
-    @page { size: letter; margin: 13mm; }
-    html, body { background: #fff !important; color: #000 !important; }
-    #site { display: none !important; }
-    #print-sheet { display: block !important; }
-  }
 </style>
 </helmet>
 
@@ -655,55 +651,6 @@
   </div>
 </sc-if>
 
-<div id="print-sheet" style="display: none; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #111827; background: #fff;">
-  <div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 18px; padding-bottom: 10px; border-bottom: 2px solid #111827;">
-    <div>
-      <div style="font-size: 22pt; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1;">Francisco Elis</div>
-      <div style="font-size: 11pt; color: #374151; margin-top: 3px;">{{ t.codeRole }}</div>
-    </div>
-    <div style="font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; color: #374151; text-align: right; line-height: 1.7;">
-      <div>franciscoj2079@gmail.com</div>
-      <div>linkedin.com/in/francisco-javier-elis-cartaya-24506b209</div>
-      <div>github.com/franj1748</div>
-    </div>
-  </div>
-
-  <p style="margin: 12px 0 0; font-size: 10pt; line-height: 1.55;">{{ t.heroSub }}</p>
-
-  <div style="display: flex; gap: 22px; margin-top: 12px; padding: 9px 0; border-top: 1px solid #d1d5db; border-bottom: 1px solid #d1d5db;">
-    <sc-for list="{{ metrics }}" as="m" hint-placeholder-count="4">
-      <div style="font-size: 9pt;">
-        <span style="font-weight: 800; font-size: 12pt;">{{ m.value }}</span>
-        <span style="color: #4b5563;"> {{ m.unit }} · {{ m.title }}</span>
-      </div>
-    </sc-for>
-  </div>
-
-  <div style="margin-top: 14px; font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; letter-spacing: 0.1em; text-transform: uppercase; color: #6b7280;">{{ t.secProjects }}</div>
-  <div style="display: flex; flex-direction: column; gap: 9px; margin-top: 8px;">
-    <sc-for list="{{ printProjects }}" as="p" hint-placeholder-count="9">
-      <div>
-        <div style="font-size: 10pt; font-weight: 700;">{{ p.title }}</div>
-        <div style="font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: #6b7280; margin-top: 1px;">{{ p.meta }}</div>
-        <div style="font-size: 9pt; line-height: 1.45; margin-top: 2px;">{{ p.printResult }}</div>
-      </div>
-    </sc-for>
-  </div>
-
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 14px; padding-top: 10px; border-top: 1px solid #d1d5db;">
-    <div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; letter-spacing: 0.1em; text-transform: uppercase; color: #6b7280;">{{ t.secStack }}</div>
-      <div style="font-size: 9pt; line-height: 1.5; margin-top: 5px;">{{ printStack }}</div>
-    </div>
-    <div>
-      <div style="font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; letter-spacing: 0.1em; text-transform: uppercase; color: #6b7280;">{{ t.certsTitle }}</div>
-      <div style="font-size: 9pt; line-height: 1.5; margin-top: 5px;">{{ printCerts }}</div>
-    </div>
-  </div>
-
-  <div style="margin-top: 12px; font-family: 'JetBrains Mono', monospace; font-size: 8pt; color: #6b7280;">{{ printAvailability }}</div>
-</div>
-
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;es&quot;,&quot;en&quot;],&quot;default&quot;:&quot;es&quot;,&quot;tsType&quot;:&quot;'es' | 'en'&quot;,&quot;section&quot;:&quot;Idioma&quot;},&quot;defaultTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;light&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;'dark' | 'light'&quot;,&quot;section&quot;:&quot;Tema&quot;},&quot;showFeaturedSeparately&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Proyectos&quot;}}">
 var WEB3FORMS_KEY = '66303207-2811-4d9f-9837-fbb22a5c03a4';
@@ -1235,6 +1182,140 @@ var DATA = {
 
 var SECTIONS = ['inicio', 'sobre-mi', 'soluciones', 'proyectos', 'sitios', 'stack', 'testimonios', 'contacto'];
 
+if (window.pdfMake) {
+  pdfMake.fonts = {
+    Roboto: { normal: 'Roboto-Regular.ttf', bold: 'Roboto-Medium.ttf', italics: 'Roboto-Italic.ttf', bolditalics: 'Roboto-MediumItalic.ttf' }
+  };
+}
+
+var PDF_COLORS = {
+  navy: '#0a0f1d', accentSoft: '#7dd3fc', accent: '#0369a1', violet: '#4f46e5',
+  text: '#0b1220', muted: '#4b5563', dim: '#94a3b8', line: '#e2e8f0', chip: '#f1f5f9'
+};
+
+function buildPdf(v) {
+  var c = PDF_COLORS;
+  var t = v.t;
+  var pageWidth = 515;
+
+  var header = {
+    table: {
+      widths: ['*'],
+      body: [[{
+        fillColor: c.navy,
+        margin: [18, 16, 18, 16],
+        columns: [
+          { width: '*', stack: [
+            { text: 'Francisco Elis', color: '#ffffff', bold: true, fontSize: 20 },
+            { text: t.codeRole, color: c.accentSoft, fontSize: 11, margin: [0, 3, 0, 0] }
+          ] },
+          { width: 'auto', fontSize: 7.5, color: '#cbd5e1', alignment: 'right', characterSpacing: 0.3, stack: [
+            { text: 'franciscoj2079@gmail.com' },
+            { text: 'linkedin.com/in/francisco-javier-elis-cartaya-24506b209' },
+            { text: 'github.com/franj1748' }
+          ] }
+        ]
+      }]]
+    },
+    layout: 'noBorders'
+  };
+
+  var rule = function (margin) {
+    return { canvas: [{ type: 'line', x1: 0, y1: 0, x2: pageWidth, y2: 0, lineWidth: 0.6, lineColor: c.line }], margin: margin || [0, 0, 0, 8] };
+  };
+
+  var sectionLabel = function (text, width) {
+    return {
+      stack: [
+        { text: text.toUpperCase(), bold: true, fontSize: 9, color: c.accent, characterSpacing: 1 },
+        { canvas: [{ type: 'line', x1: 0, y1: 0, x2: width || pageWidth, y2: 0, lineWidth: 0.6, lineColor: c.line }], margin: [0, 3, 0, 8] }
+      ]
+    };
+  };
+
+  var metricCols = v.metrics.map(function (m, i) {
+    return {
+      width: '*',
+      margin: i === 0 ? [0, 0, 0, 0] : [12, 0, 0, 0],
+      stack: [
+        { text: m.value, fontSize: 17, bold: true, color: c.accent },
+        { text: m.unit + ' · ' + m.title, fontSize: 7.5, color: c.muted, margin: [0, 2, 0, 0] }
+      ]
+    };
+  });
+
+  var projectBlocks = v.printProjects.map(function (p) {
+    return {
+      margin: [0, 0, 0, 9],
+      stack: [
+        { text: p.title, bold: true, fontSize: 10.5, color: c.text },
+        { text: p.meta.toUpperCase(), fontSize: 7.5, color: c.muted, characterSpacing: 0.3, margin: [0, 1, 0, 2] },
+        { text: p.printResult, fontSize: 9.5, color: c.text, lineHeight: 1.3 }
+      ]
+    };
+  });
+
+  var stackBlocks = v.stack.map(function (g) {
+    return {
+      margin: [0, 0, 0, 9],
+      stack: [
+        { text: g.title.toUpperCase(), bold: true, fontSize: 9, color: c.violet },
+        { text: g.items.join(', '), fontSize: 9, color: c.text, margin: [0, 2, 0, 0] }
+      ]
+    };
+  });
+
+  var certBlocks = v.certs.map(function (cert) {
+    return {
+      margin: [0, 0, 0, 8],
+      stack: [
+        { text: cert.name, bold: true, fontSize: 9.5, color: c.text },
+        { text: cert.org, fontSize: 8, color: c.muted, margin: [0, 1, 0, 1] },
+        { text: cert.id, fontSize: 7, color: c.dim, characterSpacing: 0.2 }
+      ]
+    };
+  });
+
+  var badges = v.availability.concat(v.modality).map(function (txt) {
+    return {
+      width: 'auto',
+      margin: [0, 0, 6, 6],
+      table: { body: [[{ text: txt.toUpperCase(), fontSize: 7, color: c.text, characterSpacing: 0.2, fillColor: c.chip, margin: [8, 4, 8, 4] }]] },
+      layout: 'noBorders'
+    };
+  });
+
+  var docDefinition = {
+    pageSize: 'A4',
+    pageMargins: [40, 36, 40, 46],
+    footer: function (page, pages) {
+      return { text: page + ' / ' + pages, alignment: 'center', fontSize: 8, color: c.dim, margin: [0, 10, 0, 0] };
+    },
+    defaultStyle: { font: 'Roboto', color: c.text },
+    content: [
+      header,
+      { text: t.heroSub, fontSize: 9.5, color: c.text, lineHeight: 1.4, margin: [0, 14, 0, 12] },
+      { columns: metricCols, margin: [0, 0, 0, 12] },
+      rule([0, 0, 0, 10]),
+      sectionLabel(t.secProjects),
+      projectBlocks,
+      {
+        columnGap: 24,
+        margin: [0, 14, 0, 0],
+        pageBreak: 'before',
+        columns: [
+          { width: '48%', stack: [sectionLabel(t.secStack, 231)].concat(stackBlocks) },
+          { width: '48%', stack: [sectionLabel(t.certsTitle, 231)].concat(certBlocks) }
+        ]
+      },
+      rule([0, 6, 0, 10]),
+      { columnGap: 0, columns: badges }
+    ]
+  };
+
+  pdfMake.createPdf(docDefinition).download('francisco-elis-cv.pdf');
+}
+
 class Component extends DCLogic {
   state = { lang: 'es', theme: 'dark', sent: false, sending: false, status: null, summary: null, mailto: null, filter: 'all', openCase: null };
 
@@ -1321,7 +1402,7 @@ class Component extends DCLogic {
 
   stopClick = (e) => { e.stopPropagation(); };
 
-  onPrint = () => { window.print(); };
+  onPrint = () => { buildPdf(this.renderVals()); };
 
   startScrollSpy() {
     var self = this;
